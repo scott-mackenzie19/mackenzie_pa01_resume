@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/mackenzie_pa01.dir/main.cpp.o CMakeFiles/mackenzie_pa01.dir/DSString.cpp.o CMakeFiles/mackenzie_pa01.dir/tests.cpp.o CMakeFiles/mackenzie_pa01.dir/sentiment.cpp.o CMakeFiles/mackenzie_pa01.dir/rwFile.cpp.o -o mackenzie_pa01 

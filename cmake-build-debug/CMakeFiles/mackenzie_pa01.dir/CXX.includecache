@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/DSString.h
+iostream
+-
+cstring
+-
+
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/rwFile.cpp
+rwFile.h
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/rwFile.h
+vector
+-
+sstream
+-
+algorithm
+-
+
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/rwFile.h
+sentiment.h
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/sentiment.h
+vector
+-
+fstream
+-
+iostream
+-
+sstream
+-
+
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/sentiment.h
+DSString.h
+/mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/DSString.h
+

@@ -1,0 +1,4 @@
+/home/superscottie66/.local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /mnt/c/Users/dalla/CLionProjects/mackenzie-pa01
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/Users/dalla/CLionProjects/mackenzie-pa01/cmake-build-debug
