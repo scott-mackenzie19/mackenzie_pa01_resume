@@ -6,6 +6,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <string>
 
 rwFile::rwFile() {
     Vlist = new std::vector<sentiment>;
@@ -170,7 +171,7 @@ void rwFile::sortWords() { //NOTE TO SELF: only works on datasets with tweets
     int count = 0;
     std::vector<sentiment> ye;
     for (int i = 0; i < 15; i++) {
-        //std::cout << "Size: " << Vlist->size() << std::endl;
+        std::cout << "Tweet #: " << i + 1 << " parsed." << std::endl;
         std::stringstream ss(Vlist->at(i).getTweet().c_str()); //created string stream from tweet
         while (ss.good()) {
             int count2 = 0;
@@ -193,13 +194,14 @@ void rwFile::sortWords() { //NOTE TO SELF: only works on datasets with tweets
         count++;
 
         for (auto &z : getVector()) {
-              //std::cout<<z.getTweet() << std:: endl;
               z.setCount(0);
+              std::string paragraph = z.getTweet().c_str();
             for (auto &h : wordList) {
-                if (z.getTweet().search(h.getTweet()) && (z.getStatus() == "4" )) {  //count per word incremented if pos
+                std::string word2 = h.getTweet().c_str();
+                if ((z.getStatus() == "4" ) && paragraph.find(word2))  {  //count per word incremented if pos
                     h.incrementcount();
                 }
-                if ((z.getStatus() == "0") && z.getTweet().search(h.getTweet())) {  //count decremented if negative
+                if ((z.getStatus() == "0") && paragraph.find(word2)) {  //count decremented if negative
                     h.decrementcount();
                 }
             }
@@ -208,16 +210,16 @@ void rwFile::sortWords() { //NOTE TO SELF: only works on datasets with tweets
 
     }
     for (auto& h : wordList) {
-        if (h.getcount() < 30) {
+        if (h.getcount() < 320) {
             this->negVec->push_back(h);
         }
         else {
             this->posVec->push_back(h);   //if negative, added to pos, if negative added to neg
         }
     }
-    std::cout << wordList.size() << std::endl;
-    std::cout << posVec->size() << std::endl;
-    std::cout << negVec->size();
+    std::cout << "List size: " << wordList.size() << std::endl;
+    std::cout << "Positive words: " << posVec->size() << std::endl;
+    std::cout << "Negative words: " << negVec->size() << std::endl;
 }
 
 std::vector<sentiment> rwFile::returnPosVec() {
@@ -246,16 +248,26 @@ void rwFile::incrementTweets() {
     std::vector<sentiment> tempVector;
     for (auto& fs: returnVlist()) {
         fs.setCount(0);
+        std::string word = fs.getTweet().c_str();
         for (auto& fd : *posVec) {
-            if (fs.getTweet().search(fd.getTweet())) {
+            std::string word1 = fd.getTweet().c_str();
+            if (word.find(word1)) {
                 fs.incrementcount();
+
+            }
+        }
+        std::string word2 = fs.getTweet().c_str();
+        for (auto& fd : *negVec) {
+            std::string word3 = fd.getTweet().c_str();
+            if (word2.find(word3)) {
+                fs.decrementcount();
 
             }
         }
         DSString pos = "4";
         DSString neg = "0";
         //std::cout << fs.getcount() << std::endl;
-        if (fs.getcount() >= 2) {
+        if (fs.getcount() >= -50) {
             fs.setStatus(pos);
             tempVector.push_back(fs);
         }
@@ -272,7 +284,8 @@ void rwFile::printToFile(DSString &destination, std::vector<sentiment> noSent) {
     std::vector<sentiment> tempVector;
     int count = 0;
     ofs.open(destination.c_str());
-    for (int i = 0; i < getVector().size(); i++) {
+    ofs.clear();
+    for (int i = 0; i < getVector().size() - 1; i++) {
         if (getVector().at(i).getStatus() == noSent.at(i).getStatus()) {
             count++;
         }

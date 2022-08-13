@@ -10,16 +10,7 @@ int main(int argc, char** argv ) {
     DSString testdata;
     DSString testsentiment;
     DSString output;
-     if (argc == 1) {
-         testdata = "test_dataset_10k.csv";
-         testsentiment = "test_dataset_sentiment_10k.csv";
-         traindata = "train_dataset_20k.csv";
-         output = "outputFile.txt";
-
-         /*cout << "Running catch" << endl;
-         return Catch::Session().run(); */
-     }
-     else if (argc > 1) {
+     if (argc > 1) {
 
          traindata = argv[1];
          cout << traindata.c_str() << endl;
