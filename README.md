@@ -1,0 +1,3 @@
+# mackenzie_pa01_resume
+A program that parses through the individual words of a set of tweets predetermined to have a positive or negative sentiment, attaches a sentiment value to each word, then analyzes the occurrences of each word in a new set of tweets, determining if said tweets are positive or negative.
+Data structures project one formatted for a resume. Required construction of custom string class. Command line argument 1 is location of "train_dataset_20k.csv". Command line argument 2 is location of "test_dataset_10k.csv". Command line argument 3 is location of "test_dataset_sentiment_10k.csv". Command line argument 4 is the location of "outputFile.txt".
